@@ -8,11 +8,10 @@ import org.junit.Test;
 public class GetTest {
 	@Test
 	public void getTest(){
-		int a=1;
 		int b=4;
 		int c=0;
 		String SID="123";
-		List<PrintBean> getTest=get(SID,a,b,c);
+		List<PrintBean> getTest=get(SID,b,b,c);
 		for(int j=0;j<getTest.size();j++){
 			PrintBean printBean=getTest.get(j);
 			System.out.println("发货单 号:"+printBean.getSID()+
