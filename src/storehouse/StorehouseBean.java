@@ -1,6 +1,9 @@
 package storehouse;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * 仓库详情
@@ -40,6 +43,11 @@ public class StorehouseBean {
 		this.address = address;
 		this.stock = stock;
 	}
+	public StorehouseBean(){
+		
+	}
+
+	
 	
 	
 	public String getName() {

@@ -24,12 +24,40 @@ public class DeliveryPlanBean {
 	/**
 	 * 仓库的出货情况
 	 * */
+	private List<DeliveryMessage> deliveryMessage;
 	
 	
 	
+	@Override
+	public String toString() {
+		StringBuffer sb=new StringBuffer();
+		sb.append("方案名称："+this.name+",方案单号："+this.id);
+		sb.append("\r\n");
+		for(DeliveryMessage mess:deliveryMessage){
+			sb.append("出货仓库："+mess.getStorehouseName()+"\r\n");
+			sb.append("出货商品详情："+"\r\n");
+			mess.getMessage().forEach((key,value)->{
+				sb.append("      商品："+key+"，出货数量："+value);
+			});
+			sb.append("\r\n");
+		}
+		return sb.toString();
+	}
+	
+	public DeliveryPlanBean(String name, String id, Map<String, Integer> clientStoreNum,
+			List<DeliveryMessage> deliveryMessage) {
+		super();
+		this.name = name;
+		this.id = id;
+		this.clientStoreNum = clientStoreNum;
+		this.deliveryMessage = deliveryMessage;
+	}
+	
+	public DeliveryPlanBean(){
+		
+	}
 	
 	
-	private List<Map<String,String>> deliveryMessage;
 	public String getName() {
 		return name;
 	}
@@ -57,13 +85,13 @@ public class DeliveryPlanBean {
 	/**
 	 * 仓库的出货情况
 	 * */
-	public List<Map<String, String>> getDeliveryMessage() {
+	public List<DeliveryMessage> getDeliveryMessage() {
 		return deliveryMessage;
 	}
 	/**
 	 * 仓库的出货情况
 	 * */
-	public void setDeliveryMessage(List<Map<String, String>> deliveryMessage) {
+	public void setDeliveryMessage(List<DeliveryMessage> deliveryMessage) {
 		this.deliveryMessage = deliveryMessage;
 	}
 	

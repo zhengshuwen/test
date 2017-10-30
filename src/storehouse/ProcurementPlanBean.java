@@ -33,6 +33,13 @@ public class ProcurementPlanBean {
 		this.destination = destination;
 		this.procurementPlan = procurementPlan;
 	}
+	public ProcurementPlanBean(){
+		
+	}
+	
+	
+	
+	
 	/**
 	 * 客户名称
 	 * */
