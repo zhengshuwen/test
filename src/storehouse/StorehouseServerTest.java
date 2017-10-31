@@ -34,7 +34,7 @@ public class StorehouseServerTest {
 		
 		//客户的采购计划
 		Map<String, Integer> procurement=new HashMap<String, Integer>();//仓库库存
-		procurement.put("苹果", 25700);
+		procurement.put("苹果", 2500);
 		procurement.put("橘子", 500);
 		procurement.put("香蕉", 600);
 		ProcurementPlanBean procurementPlan=new ProcurementPlanBean("zhengshuwen", "10000", procurement);

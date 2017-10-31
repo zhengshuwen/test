@@ -26,24 +26,6 @@ public class DeliveryPlanBean {
 	 * */
 	private List<DeliveryMessage> deliveryMessage;
 	
-	
-	
-	@Override
-	public String toString() {
-		StringBuffer sb=new StringBuffer();
-		sb.append("方案名称："+this.name+",方案单号："+this.id);
-		sb.append("\r\n");
-		for(DeliveryMessage mess:deliveryMessage){
-			sb.append("出货仓库："+mess.getStorehouseName()+"\r\n");
-			sb.append("出货商品详情："+"\r\n");
-			mess.getMessage().forEach((key,value)->{
-				sb.append("      商品："+key+"，出货数量："+value);
-			});
-			sb.append("\r\n");
-		}
-		return sb.toString();
-	}
-	
 	public DeliveryPlanBean(String name, String id, Map<String, Integer> clientStoreNum,
 			List<DeliveryMessage> deliveryMessage) {
 		super();

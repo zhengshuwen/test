@@ -16,6 +16,23 @@ public class DeliveryMessage {
 	 * 仓库出货信息
 	 * */
 	private Map<String ,Integer> message;
+	
+	
+	
+	
+	
+	public DeliveryMessage() {
+		super();
+	}
+	public DeliveryMessage(String name, String id, String storehouseName, Map<String, Integer> message) {
+		super();
+		this.name = name;
+		this.id = id;
+		this.storehouseName = storehouseName;
+		this.message = message;
+	}
+	
+	
 	public String getName() {
 		return name;
 	}

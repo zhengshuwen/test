@@ -106,25 +106,18 @@ public class StorehouseServer {
 	 * @param plan:客户的采购计划，storehouses：生成方案的仓库列表。
 	 * */
 	private DeliveryPlanBean getDeliveryPlan(ProcurementPlanBean plan,List<StorehouseBean> storehouses){
-		DeliveryPlanBean deliveryPlanBean=new DeliveryPlanBean();
-		deliveryPlanBean.setClientStoreNum(plan.getProcurementPlan());
-		deliveryPlanBean.setName(plan.getName()+"客户采购发货方案");
-		deliveryPlanBean.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+		DeliveryPlanBean deliveryPlanBean=new DeliveryPlanBean(plan.getName()+"客户采购发货方案", UUID.randomUUID().toString().replaceAll("-", ""), 
+				plan.getProcurementPlan(), null);
 		
 		if(1==storehouses.size()){
-			DeliveryMessage deliveryMessage=new DeliveryMessage();
-			deliveryMessage.setId(UUID.randomUUID().toString().replaceAll("-", ""));
-			deliveryMessage.setName(deliveryPlanBean.getName()+"详情");
-			deliveryMessage.setMessage(plan.getProcurementPlan());
-			deliveryMessage.setStorehouseName(storehouses.get(0).getName());
+			DeliveryMessage deliveryMessage=new DeliveryMessage(deliveryPlanBean.getName()+"详情", 
+					UUID.randomUUID().toString().replaceAll("-", ""), storehouses.get(0).getName(), plan.getProcurementPlan());
 			deliveryPlanBean.setDeliveryMessage(Arrays.asList(deliveryMessage));
 		}else{
 			List<DeliveryMessage> deliveryMessageList=new ArrayList<DeliveryMessage>(); 
 			for(StorehouseBean bean:storehouses){
-				DeliveryMessage deliveryMessage=new DeliveryMessage();
-				deliveryMessage.setId(UUID.randomUUID().toString().replaceAll("-", ""));
-				deliveryMessage.setName(deliveryPlanBean.getName()+"详情");
-				deliveryMessage.setStorehouseName(bean.getName());
+				DeliveryMessage deliveryMessage=new DeliveryMessage(deliveryPlanBean.getName()+"详情", 
+						UUID.randomUUID().toString().replaceAll("-", ""), bean.getName(), null);
 				//获取方案详细信息
 				Map<String, Integer> message=getDeliveryMessage(plan.getProcurementPlan(),bean.getStock());
 				deliveryMessage.setMessage(message);
@@ -136,7 +129,7 @@ public class StorehouseServer {
 	}
 	
 	/**
-	 * 
+	 * 获取发货详情
 	 * */
 	private Map<String, Integer> getDeliveryMessage(Map<String, Integer> planMessage,Map<String, Integer> stock){
 		Map<String, Integer> map=new HashMap<String,Integer>();
